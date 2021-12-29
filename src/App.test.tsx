@@ -45,6 +45,9 @@ describe('Testing App Component', () => {
     });
 
     it('should render Child Component', () => {
+
+        // https://pretagteam.com/question/how-to-test-child-component-method-with-enzyme
+
         const wrapper = shallow(<App />);
 
         expect(wrapper.containsMatchingElement(<Child />)).toEqual(true);
@@ -57,11 +60,14 @@ describe('Testing App Component', () => {
     });
 
     it('should trigger Child component event callback method in App', () => {
+
+        // https://thewebdev.info/2021/05/08/how-to-check-if-a-function-is-called-on-a-component-jest/
+
         const wrapper = shallow(<App />);
 
         const instance = wrapper.instance();
 
-        const spy = jest.spyOn(instance, "onCounterUpdate" as any);
+        const spy = jest.spyOn(instance, "onCounterUpdate" as any); // casting function name as any to avoid ts error
 
         instance.forceUpdate();
 
