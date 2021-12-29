@@ -8,6 +8,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 https://pusher.com/tutorials/react-jest-enzyme/
 
 
+### What is Shallow Rendering in Jest?
+
+Shallow rendering lets you render a component “one level deep” and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+
+### What is Mount Rendering in Jest?
+
+Mount method renders the full DOM including the child components of the parent component that we are running the tests.
+
+
 ## Available Scripts
 
 In the project directory, you can run:

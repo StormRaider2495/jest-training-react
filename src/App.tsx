@@ -1,30 +1,40 @@
 import React from 'react';
+import Child from './Child';
 
 class App extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      ClickCount:0,
-      IamDisabled : true
-    };
-    this.ClickMe = this.ClickMe.bind(this);
-}
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            clickCount: 0,
+            countValueFromChild: 100,
+        };
+        this.clickMe         = this.clickMe.bind(this);
+        this.onCounterUpdate = this.onCounterUpdate.bind(this);
+    }
 
-ClickMe(){
-  this.setState({
-    ClickCount:this.state.ClickCount + 1
-  });
-}
+    clickMe(): void {
+        this.setState({
+            clickCount: this.state.clickCount + 1
+        });
+    }
 
-  render() {
-    return (
-      <div>
-        <button id="ClickMe" className="click-me" onClick={this.ClickMe}>Click Me</button>
-        <p>You clicked me :: {this.state.ClickCount}</p>
-        <button id=" IamDisabled " className="click-me" disabled={this.state.IamDisabled}>Disabled</button>
-      </div>
-    )
-  }
-};
+    onCounterUpdate(value: number): void {
+        this.setState({
+            countValueFromChild: value,
+        });
+    }
+
+    render(): JSX.Element {
+        const { state } = this;
+        return (
+            <div>
+                <button id="clickMe" className="click-me" onClick={this.clickMe}>Click Me</button>
+                <p id="DisplayCount">You clicked me :: {this.state.clickCount}</p>
+
+                <Child initialCounterValue = { state.countValueFromChild } counterUpdateCallback = { this.onCounterUpdate}/>
+            </div>
+        )
+    }
+}
 
 export default App;
